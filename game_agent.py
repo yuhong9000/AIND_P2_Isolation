@@ -37,29 +37,15 @@ def custom_score(game, player):
     """
 
     # TODO: finish this function!
-    if game.is_loser(player):
-        return float("-inf")
-
-    if game.is_winner(player):
-        return float("inf")
-
     opponent = game.get_opponent(player)
     if game.utility in [float('inf'),float('-inf')]:
         return game.utility
 
-    center = ((game.width-1)/2,(game.height-1)/2)
-    board_size = game.width * game.height
     blank_spaces = len(game.get_blank_spaces())
-    occupied_spaces = board_size - blank_spaces
-    own_location = game.get_player_location(player)
-    opp_location = game.get_player_location(opponent)
-
+    
     own_moves = float(len(game.get_legal_moves(player)))
     opp_moves = float(len(game.get_legal_moves(opponent)))
-    own_distance_to_center = float(abs(own_location[0]-center[0])+abs(own_location[1]-center[1]))
-    opp_distance_to_center = float(abs(opp_location[0]-center[0])+abs(opp_location[1]-center[1]))
 
-    ratio = blank_spaces *1.0 / board_size
     return float(2 * own_moves - opp_moves / blank_spaces)
 
 def custom_score_1(game, player):
@@ -99,7 +85,7 @@ def custom_score_1(game, player):
     own_distance_to_center = abs(own_location[0]-center[0])+abs(own_location[1]-center[1])
     opp_distance_to_center = abs(opp_location[0]-center[0])+abs(opp_location[1]-center[1])
 
-    return float(own_moves - 3*opp_moves + own_distance_to_center - 3*opp_distance_to_center)
+    return float(own_moves - 3 * opp_moves + own_distance_to_center - 3 * opp_distance_to_center)
 
     #raise NotImplementedError
     
