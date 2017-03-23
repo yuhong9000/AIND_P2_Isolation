@@ -278,6 +278,7 @@ class CustomPlayer:
         if self.time_left() < self.TIMER_THRESHOLD:
             raise Timeout()
 
+        # TODO: finish this function!
         # if no more legal moves, return score, invalid move
         if game.utility in [float('inf'),float('-inf')]:
             return self.score(game,self), (-1,-1)
@@ -353,6 +354,7 @@ class CustomPlayer:
         if self.time_left() < self.TIMER_THRESHOLD:
             raise Timeout()
 
+        # TODO: finish this function!
         # if no more legal moves, return score, invalid move
         if game.utility in [float('inf'),float('-inf')]:
             return self.score(game,self), (-1,-1)
@@ -398,5 +400,4 @@ class CustomPlayer:
                 beta = min(beta,result[0])
             else:
                 return result
-        # TODO: finish this function!
         # raise NotImplementedError
