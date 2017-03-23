@@ -366,19 +366,14 @@ class CustomPlayer:
         # find out who is the active player and determine a list of next game state
         p = game.active_player
         moves = game.get_legal_moves(p)
-        #states = [game.forecast_move(move) for move in moves]
 
         if maximizing_player:
             result = (float('-inf'),(-1,-1))
             for move in moves:
                 g = game.forecast_move(move)
-                #result = (max(result[0],self.alphabeta(g,depth-1,alpha,beta,False)[0]),
-                #            g.get_player_location(self))
                 s = self.alphabeta(g,depth-1,alpha,beta,False)
                 if s[0] >= result[0]:
                     result = (s[0],g.get_player_location(self))
-                #result = max([result,self.alphabeta(g,depth-1,alpha,beta,False)],
-                #             key = lambda p:p[0])
                 if result[0] >= beta:
                     return result
                 alpha = max(alpha,result[0])
@@ -388,13 +383,9 @@ class CustomPlayer:
             result = (float('inf'),(-1,-1))
             for move in moves:
                 g = game.forecast_move(move)
-                #result = (max(result[0],self.alphabeta(g,depth-1,alpha,beta,True)[0]),
-                #            g.get_player_location(self))
                 s = self.alphabeta(g,depth-1,alpha,beta,True)
                 if s[0] <= result[0]:
                     result = (s[0],g.get_player_location(self))
-                #result = min([result,self.alphabeta(g,depth-1,alpha,beta,True)],
-                #             key = lambda p:p[0])
                 if result[0] <= alpha:
                     return result
                 beta = min(beta,result[0])
